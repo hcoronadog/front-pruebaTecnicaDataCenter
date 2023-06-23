@@ -1,0 +1,38 @@
+<p>El ID del Vendedor es: {{ id }}</p>
+
+<table>
+    <thead>
+      <tr>
+        <th>Nombre Operador</th>
+        <th>Valor Recarga por minuto</th>
+      </tr>
+    </thead>
+     <tbody>
+      <tr *ngFor="let item of dataOperador">
+        <td>{{ item.nombreOperador }}</td>
+        <td>{{ item.valorRecargaMinuto }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Formulario de Recargas</h2>
+<form>
+  <label for="nombre">Seleccione Operador:</label>
+  <select [(ngModel)]="operadorSeleccionado" name="operadorSeleccionado"  (change)="calculoValor()">
+    <option value="">Seleccionar operador</option>
+    <option *ngFor="let operador of dataOperador" [value]="operador.idOperador">{{ operador.nombreOperador }}</option>
+  </select>
+
+  <label for="numeroTelefonico">Numero Telefonico:</label>
+  <input type="number" name="numeroTelefonico" [(ngModel)]="numeroTelefonico">
+
+  <label for="cantidad">Cantidad:</label>
+  <input type="number" name="cantidadSeleccionada" [(ngModel)]="cantidadSeleccionada" (input)="calculoValor()">
+
+  <label for="precio">Valor Recarga:</label>
+  <input type="number" name="valorRecarga" [(ngModel)]="valorRecarga" disabled>
+
+  <button type="button" (click)="guardarRecargas()">Aplicar recarga</button>
+</form>
+  
+  
